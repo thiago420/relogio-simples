@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial';
+}
+
+body {
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+.configJanela {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: auto;
+    width: 300px;
+    padding: 15px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.configJanela.esconder {
+    display: none;
+}
+
+.configFechar {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+}
+
+.configFechar:hover {
+    color: red;
+}
+
+.configHeader {
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.configBtn {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+
+.configBtn:hover {
+    background-color: gray;
+    transition: ease 0.6s;
+}
+
+.configBtn.esconder {
+    display: none;
+}
+
+.relogio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: transparent;
+}
+
+.data {
+    color: #3d3d3d;
+    font-weight: bold;
+}
+
+.data.simples {
+    font-size: 100px;
+	cursor: pointer;
+    letter-spacing: 3px;
+}
+
+.data.avancado {
+    font-size: 50px;
+	cursor: pointer;
+    letter-spacing: normal;
+}
+
+.data.horario {
+    letter-spacing: 3px;
+	cursor: default;
+    font-weight: bold;
+    font-size: 400px;;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icone.svg">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Relógio</title>
+</head>
+
+<body>
+    <div id="configBtn" class="configBtn" title="Abrir configurações 🛠" onclick="abrirConfig(true)"></div>
+    <div id="configJanela" class="configJanela esconder">
+        <div class="configHeader">
+            <h2>Configurações</h2>
+        </div>
+        <div class="configFechar" title="Fechar configurações 🛠" onclick="abrirConfig(false)">X</div>
+        <div>
+            Cor de fundo
+            <input type="color" id="inputFundo" value="#000000" oninput="trocarCor(this.value, 'fundo')">
+            <input type="button" value="Redefinir" onclick="trocarCor(null, 'fundoRedefinir')">
+        </div>
+        <br>
+        <div>
+            Cor das letras
+            <input type="color" id="inputLetra" value="#3d3d3d" oninput="trocarCor(this.value, 'letra')">
+            <input type="button" value="Redefinir" onclick="trocarCor(null, 'letraRedefinir')">
+        </div>
+        <br>
+        <div>
+            Formatação da data:
+            <input type="button" id="formatacaoBtn" value="Avançado" onclick="trocarData()">
+        </div>
+        <br>
+        <!-- <div>
+            Fuso horário: <span id="fuso"></span>
+        </div> -->
+    </div>
+    <div class="relogio">
+        <div id="dataDiv" class="data avancado" title="Formatação: Avançado" onclick="trocarData()">
+            <span id="data"></span>
+        </div>
+        <div class="data horario">
+            <span id="horario"></span>
+        </div>
+    </div>
+</body>
+
+</html>
