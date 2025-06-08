@@ -5,39 +5,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
     <link rel="icon" href="img/icone.svg">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Relógio</title>
 </head>
 
-<body>
-    <div id="configBtn" class="configBtn" title="Abrir configurações 🛠" onclick="abrirConfig(true)"></div>
-    <div id="configJanela" class="configJanela esconder">
-        <div class="configHeader">
-            <h2>Configurações</h2>
+<body data-bs-theme="dark">
+    <button id="configBtn" class="configBtn" title="Abrir configurações" data-bs-toggle="modal"
+        data-bs-target="#configModal">Abrir Configurações</button>
+    <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    <h1 class="modal-title fs-3" id="exampleModalLabel">Configurações</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="configBody">
+                        <div>
+                            Tema Modal
+                            <button type="button" class="btn btn-primary" id="btnTemaModal" onclick="trocarTemaModal()">Escuro</button>
+                        </div>
+                        <div>
+                            Cor de fundo
+                            <input type="color" class="form-control form-control-color" id="inputFundo" value="#000000"
+                                oninput="trocarCor('fundo', this.value)">
+                            <button type="button" class="btn btn-primary" onclick="trocarCor('fundoRedefinir')">Redefinir</button>
+                        </div>
+                        <div>
+                            Cor das letras
+                            <input type="color" class="form-control form-control-color" id="inputLetra" value="#3d3d3d"
+                                oninput="trocarCor('letra', this.value)">
+                            <button type="button" class="btn btn-primary" onclick="trocarCor('letraRedefinir')">Redefinir</button>
+                        </div>
+                        <div>
+                            Formatação da data
+                            <button type="button" id="formatacaoBtn" class="btn btn-primary" onclick="trocarData()">Avançado</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border: none;">
+                    <button type="button" class="btn btn-danger" onclick="redefinir()">Redefinir Configurações</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
         </div>
-        <div class="configFechar" title="Fechar configurações 🛠" onclick="abrirConfig(false)">X</div>
-        <div>
-            Cor de fundo
-            <input type="color" id="inputFundo" value="#000000" oninput="trocarCor(this.value, 'fundo')">
-            <input type="button" value="Redefinir" onclick="trocarCor(null, 'fundoRedefinir')">
-        </div>
-        <br>
-        <div>
-            Cor das letras
-            <input type="color" id="inputLetra" value="#3d3d3d" oninput="trocarCor(this.value, 'letra')">
-            <input type="button" value="Redefinir" onclick="trocarCor(null, 'letraRedefinir')">
-        </div>
-        <br>
-        <div>
-            Formatação da data:
-            <input type="button" id="formatacaoBtn" value="Avançado" onclick="trocarData()">
-        </div>
-        <br>
-        <!-- <div>
-            Fuso horário: <span id="fuso"></span>
-        </div> -->
     </div>
     <div class="relogio">
         <div id="dataDiv" class="data avancado" title="Formatação: Avançado" onclick="trocarData()">

@@ -16,8 +16,6 @@ const dataDiv = document.getElementById('dataDiv');
 
 let formatacaoAvancado = true;
 
-let fusoHorario;
-
 const relogio = setInterval(function time() {
     dateToday = new Date();
     h = String(dateToday.getHours()).padStart(2, '0'); // Hora
@@ -29,7 +27,7 @@ const relogio = setInterval(function time() {
     mn = dateToday.getMonth(); // Nome dos Meses (0 a 11)
     y = dateToday.getFullYear(); // Ano
 
-    switch(dw) {
+    switch (dw) {
         case 0:
             dw = "Domingo";
             break;
@@ -53,7 +51,7 @@ const relogio = setInterval(function time() {
             break;
     }
 
-    switch(mn) {
+    switch (mn) {
         case 0:
             mn = "Janeiro";
             break;
@@ -107,33 +105,33 @@ function atualizarHorario() {
     }
 }
 
+function trocarTemaModal() {
+    if (document.body.getAttribute('data-bs-theme') === 'dark') {
+        document.body.setAttribute('data-bs-theme', 'light');
+        document.getElementById("btnTemaModal").innerHTML = "Claro";
+    } else {
+        document.body.setAttribute('data-bs-theme', 'dark');
+        document.getElementById("btnTemaModal").innerHTML = "Escuro";
+    }
+}
+
 function trocarData() {
     if (formatacaoAvancado) {
         formatacaoAvancado = false;
         atualizarHorario();
         dataDiv.className = "data simples";
         dataDiv.setAttribute("title", "Formatação: Simples");
-        document.getElementById("formatacaoBtn").value = "Simples";
+        document.getElementById("formatacaoBtn").innerHTML = "Simples";
     } else {
         formatacaoAvancado = true;
         atualizarHorario();
         dataDiv.className = "data avancado";
         dataDiv.setAttribute("title", "Formatação: Avançado");
-        document.getElementById("formatacaoBtn").value = "Avançado";
+        document.getElementById("formatacaoBtn").innerHTML = "Avançado";
     }
 }
 
-function abrirConfig(abrir) {
-    if (abrir) {
-        document.getElementById("configBtn").className = "configBtn esconder";
-        document.getElementById("configJanela").className = "configJanela";
-    } else {
-        document.getElementById("configJanela").className = "configJanela esconder";
-        document.getElementById("configBtn").className = "configBtn";
-    }
-}
-
-function trocarCor(cor, tipo) {
+function trocarCor(tipo, cor) {
     switch (tipo) {
         case "fundo":
             document.body.style.backgroundColor = cor;
@@ -158,14 +156,11 @@ function trocarCor(cor, tipo) {
     }
 }
 
-// function atualizarFuso() {
-//     let calculo = dateToday.getHours() - dateToday.getUTCHours();
-//     if (calculo == 0) {
-//         fusoHorario = "UTC";
-//     } else if (calculo > 0) {
-//         fusoHorario = "UTC+" + calculo;
-//     } else if (calculo < 0) {
-//         fusoHorario = "UTC" + calculo;
-//     }
-//     document.getElementById("fuso").innerHTML = fusoHorario;
-// }
+function redefinir() {
+    formatacaoAvancado = false;
+    trocarData();
+    document.body.setAttribute('data-bs-theme', 'dark');
+    document.getElementById("btnTemaModal").innerHTML = "Escuro";
+    trocarCor('fundoRedefinir');
+    trocarCor('letraRedefinir');
+}
